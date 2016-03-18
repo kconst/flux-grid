@@ -15,12 +15,17 @@ body {
   background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 
-
-  .grid-elements {
+  ul {
     margin: 0;
     padding: 0;
     list-style: none;
 
+    li {
+      padding: 4px;
+    }
+  }
+
+  .grid-rows {
     li {
       color: #bec0c4;
       text-decoration: none;
@@ -30,13 +35,32 @@ body {
       background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
-      padding: 4px;
 
       div {
         text-align: left;
         width: 20%;
         display: inline-block;
       }
+    }
+  }
+
+  .grid-headers {
+    color: dodgerblue;
+    font-weight: bold;
+    padding: 4px;
+
+    li {
+      text-align: left;
+      width: 20%;
+      display: inline-block;
+      padding: 0;
+    }
+
+    li::first-letter {
+      text-transform: uppercase;
+    }
+
+    li:first-of-type {
     }
   }
 }

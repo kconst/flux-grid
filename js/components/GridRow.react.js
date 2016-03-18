@@ -33,10 +33,10 @@ var GridRow = React.createClass({
             row = this.props.row;
 
         return (
-            <li index="index">
+            <li data-index={index}>
                 <div>{row.text}</div>
                 <div>{row.value}</div>
-                <div class="date">{row.date.toDateString()}</div>
+                <div className="date">{row.date.toDateString()}</div>
             </li>
         );
         // List items should get the class 'editing' when editing

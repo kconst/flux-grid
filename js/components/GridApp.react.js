@@ -13,7 +13,7 @@
  */
 
 /*var Footer = require('./Footer.react');
-var Header = require('./Header.react');*/
+ var Header = require('./Header.react');*/
 var Viewport = require('./Viewport.react');
 var React = require('react');
 var DataStore = require('../stores/DataStore');
@@ -22,47 +22,47 @@ var DataStore = require('../stores/DataStore');
  * Retrieve the current TODO data from the TodoStore
  */
 function getConfig() {
-	return {
-		data: DataStore.getAll(),
-		columns: DataStore.getColumns()
-	};
+    return {
+        data: DataStore.getAll(),
+        columns: DataStore.getColumns()
+    };
 }
 
 var GridApp = React.createClass({
 
-	getInitialState: function() {
-		return getConfig();
-	},
+    getInitialState: function () {
+        return getConfig();
+    },
 
-	componentDidMount: function() {
-		DataStore.addChangeListener(this._onChange);
-	},
+    componentDidMount: function () {
+        DataStore.addChangeListener(this._onChange);
+    },
 
-	componentWillUnmount: function() {
-		DataStore.removeChangeListener(this._onChange);
-	},
+    componentWillUnmount: function () {
+        DataStore.removeChangeListener(this._onChange);
+    },
 
-	/**
-	 * @return {object}
-	 */
-	render: function() {
-		return (
-			<div>
-				<Viewport
-					data={this.state.data}
-				        columns={this.state.columns}
-				/>
-			</div>
-		);
-	},
+    /**
+     * @return {object}
+     */
+    render: function () {
+        return (
+            <div>
+                <Viewport
+                    data={this.state.data}
+                    columns={this.state.columns}
+                />
+            </div>
+        );
+    },
 
-	/**
-	 * Event handler for 'change' events coming from the TodoStore
-	 */
-	_onChange: function() {
-		debugger
-		this.setData(getData());
-	}
+    /**
+     * Event handler for 'change' events coming from the TodoStore
+     */
+    _onChange: function () {
+        debugger
+        this.setData(getData());
+    }
 
 });
 
