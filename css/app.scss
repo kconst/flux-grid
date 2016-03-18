@@ -31,6 +31,12 @@ body {
       background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
       padding: 4px;
+
+      div {
+        text-align: left;
+        width: 20%;
+        display: inline-block;
+      }
     }
   }
 }
