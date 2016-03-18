@@ -13,44 +13,37 @@ var GridActions = require('../actions/GridActions');
 var GridRow = require('./GridRow.react');
 
 var Viewport = React.createClass({
+    propTypes: {
+        data: ReactPropTypes.array.isRequired
+    },
 
-	propTypes: {
-		data: ReactPropTypes.array.isRequired
-	},
+    /**
+     * @return {object}
+     */
+    render: function () {
+        var data = this.props.data,
+            rows = [];
 
-	/**
-	 * @return {object}
-	 */
-	render: function() {
-		// This section should be hidden by default
-		// and shown when there are todos.
-		/*if (Object.keys(this.props.allTodos).length < 1) {
-			return null;
-		}*/
+        data.forEach(function (e, i) {
+            rows.push(<GridRow index={i} row={e} key={i}/>);
+        });
 
-		var data = this.props.data;
-		var rows = [];
+        return (
+            <section id="grid">
+                <ul className="grid-elements">
+                    {rows}
+                </ul>
 
-		data.forEach(function(e, i){
-			rows.push(<GridRow index={i} row={e} />);
-		});
+            </section>
+        );
+    },
 
-		return (
-			<section id="grid">
-				<ul className="grid-elements">
-					{rows}
-				</ul>
-
-			</section>
-		);
-	},
-
-	/**
-	 * Event handler to mark all TODOs as complete
-	 */
-	_onToggleCompleteAll: function() {
-		GridActions.toggleCompleteAll();
-	}
+    /**
+     * Event handler to mark all TODOs as complete
+     */
+    _onToggleCompleteAll: function () {
+        GridActions.toggleCompleteAll();
+    }
 
 });
 

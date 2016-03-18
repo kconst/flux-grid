@@ -17,87 +17,108 @@ var assign = require('object-assign');
 var CHANGE_EVENT = 'change';
 
 var _columns = [
-	'label',
-	'value'
+    'text',
+    'value',
+    'date'
 ];
 
 var _data = [
-	{
-		text : 'testing1'
-	},
-	{
-		text : 'testing2'
-	},
-	{
-		text : 'testing3'
-	},
-	{
-		text : 'testing4'
-	},
-	{
-		text : 'testing5'
-	},
-	{
-		text : 'testing6'
-	},
-	{
-		text : 'testing7'
-	},
-	{
-		text : 'testing8'
-	},
-	{
-		text : 'testing6'
-	},
-	{
-		text : 'testing7'
-	},
-	{
-		text : 'testing8'
-	},
-	{
-		text : 'testing9'
-	}
+    {
+        text: 'testing1',
+        value: 100,
+        date: new Date('3/14/16')
+    },
+    {
+        text: 'testing2',
+        value: 300,
+        date: new Date('3/15/16')
+    },
+    {
+        text: 'testing3',
+        value: 410,
+        date: new Date('3/13/16')
+    },
+    {
+        text: 'testing4',
+        value: 820,
+        date: new Date('3/11/16')
+    },
+    {
+        text: 'testing5',
+        value: 750,
+        date: new Date('3/14/16')
+    },
+    {
+        text: 'testing6',
+        value: 190,
+        date: new Date('3/15/16')
+    },
+    {
+        text: 'testing7',
+        value: 660,
+        date: new Date('3/14/16')
+    },
+    {
+        text: 'testing8',
+        value: 910,
+        date: new Date('3/12/16')
+    },
+    {
+        text: 'testing6',
+        value: 460,
+        date: new Date('3/13/16')
+    },
+    {
+        text: 'testing7',
+        value: 180,
+        date: new Date('3/11/16')
+    },
+    {
+        text: 'testing8',
+        value: 200,
+        date: new Date('3/15/16')
+    },
+    {
+        text: 'testing9',
+        value: 350,
+        date: new Date('3/15/16')
+    }
 ];
 
 // bootstrap store
 init(_data);
 
 function init(data) {
-	setData(data);
+    setData(data);
 }
 
 function setData(data) {
-	data.forEach(function(e, i){
-		e.key = i;
-	});
-	debugger;
-	_data = data;
+    _data = data;
 }
 
 function refresh() {
-	_data = _data.sort();
+    _data = _data.sort();
 }
 
 function remove(id) {
-	// delete data[id];
-	_data.some(function(e, i, arr){
-		if (e.id === id) {
-			arr[i] = args;
+    // delete data[id];
+    _data.some(function (e, i, arr) {
+        if (e.id === id) {
+            arr[i] = args;
 
-			return true;
-		}
-	});
+            return true;
+        }
+    });
 }
 
 function update(args) {
-	_data.some(function(e, i, arr){
-		if (e.id === args.id) {
-			arr[i] = args;
+    _data.some(function (e, i, arr) {
+        if (e.id === args.id) {
+            arr[i] = args;
 
-			return true;
-		}
-	});
+            return true;
+        }
+    });
 }
 
 /**
@@ -105,188 +126,188 @@ function update(args) {
  * @param  {string} text The content of the TODO
  */
 /*function create(text) {
-	// Hand waving here -- not showing how this interacts with XHR or persistent
-	// server-side storage.
-	// Using the current timestamp + random number in place of a real id.
-	var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-	_data[id] = {
-		id: id,
-		complete: false,
-		text: text
-	};
-}
-assign
-/!**
+ // Hand waving here -- not showing how this interacts with XHR or persistent
+ // server-side storage.
+ // Using the current timestamp + random number in place of a real id.
+ var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
+ _data[id] = {
+ id: id,
+ complete: false,
+ text: text
+ };
+ }
+ assign
+ /!**
  * Update a TODO item.
  * @param  {string} id
  * @param {object} updates An object literal containing only the data to be
  *     updated.
  *!/
-function update(id, updates) {
-	_data[id] = assign({}, _data[id], updates);
-}
+ function update(id, updates) {
+ _data[id] = assign({}, _data[id], updates);
+ }
 
-/!**
+ /!**
  * Update all of the TODO items with the same object.
  * @param  {object} updates An object literal containing only the data to be
  *     updated.
  *!/
-function updateAll(updates) {
-	for (var id in _data) {
-		update(id, updates);
-	}
-}
+ function updateAll(updates) {
+ for (var id in _data) {
+ update(id, updates);
+ }
+ }
 
-/!**
+ /!**
  * Delete a TODO item.
  * @param  {string} id
  *!/
-function destroy(id) {
-	delete _data[id];
-}
+ function destroy(id) {
+ delete _data[id];
+ }
 
-/!**
+ /!**
  * Delete all the completed TODO items.
  *!/
-function destroyCompleted() {
-	for (var id in _data) {
-		if (_data[id].complete) {
-			destroy(id);
-		}
-	}
-}*/
+ function destroyCompleted() {
+ for (var id in _data) {
+ if (_data[id].complete) {
+ destroy(id);
+ }
+ }
+ }*/
 
 var DataStore = assign({}, EventEmitter.prototype, {
 
-	/**
-	 * Tests whether all the remaining TODO items are marked as completed.
-	 * @return {boolean}
-	 */
-	/*areAllComplete: function() {
-		for (var id in _data) {
-			if (!_data[id].complete) {
-				return false;
-			}
-		}
-		return true;
-	},*/
+    /**
+     * Tests whether all the remaining TODO items are marked as completed.
+     * @return {boolean}
+     */
+    /*areAllComplete: function() {
+     for (var id in _data) {
+     if (!_data[id].complete) {
+     return false;
+     }
+     }
+     return true;
+     },*/
 
-	/**
-	 * Get the entire collection of TODOs.
-	 * @return {object}
-	 */
-	getAll: function() {
-		return _data;
-	},
+    /**
+     * Get the entire collection of TODOs.
+     * @return {object}
+     */
+    getAll: function () {
+        return _data;
+    },
 
-	getColumns: function() {
-		return _columns;
-	},
+    getColumns: function () {
+        return _columns;
+    },
 
-	emitChange: function() {
-		this.emit(CHANGE_EVENT);
-	},
+    emitChange: function () {
+        this.emit(CHANGE_EVENT);
+    },
 
-	/**
-	 * @param {function} callback
-	 */
-	addChangeListener: function(callback) {
-		this.on(CHANGE_EVENT, callback);
-	},
+    /**
+     * @param {function} callback
+     */
+    addChangeListener: function (callback) {
+        this.on(CHANGE_EVENT, callback);
+    },
 
-	/**
-	 * @param {function} callback
-	 */
-	removeChangeListener: function(callback) {
-		this.removeListener(CHANGE_EVENT, callback);
-	}
+    /**
+     * @param {function} callback
+     */
+    removeChangeListener: function (callback) {
+        this.removeListener(CHANGE_EVENT, callback);
+    }
 });
 
 // Register callback to handle all updates
-ViewDispatcher.register(function(action) {
-	var text;
-debugger
-	switch(action.actionType) {
-		case TodoConstants.GRID_RENDER:
-			text = action.text.trim();
-			if (text !== '') {
-				init(data);
-				DataStore.emitChange();
-			}
-			break;
+ViewDispatcher.register(function (action) {
+    var text;
+    debugger
+    switch (action.actionType) {
+        case TodoConstants.GRID_RENDER:
+            text = action.text.trim();
+            if (text !== '') {
+                init(data);
+                DataStore.emitChange();
+            }
+            break;
 
-		case TodoConstants.GRID_DATA_UPDATED:
-			text = action.text.trim();
-			if (text !== '') {
-				update(action);
-				DataStore.emitChange();
-			}
-			break;
+        case TodoConstants.GRID_DATA_UPDATED:
+            text = action.text.trim();
+            if (text !== '') {
+                update(action);
+                DataStore.emitChange();
+            }
+            break;
 
-		case TodoConstants.GRID_DATA_REMOVED:
-			text = action.text.trim();
-			if (text !== '') {
-				remove(action.id);
-				DataStore.emitChange();
-			}
-			break;
+        case TodoConstants.GRID_DATA_REMOVED:
+            text = action.text.trim();
+            if (text !== '') {
+                remove(action.id);
+                DataStore.emitChange();
+            }
+            break;
 
-		case TodoConstants.GRID_UPDATE:
-			text = action.text.trim();
-			if (text !== '') {
-				refresh();
-				DataStore.emitChange();
-			}
-			break;
+        case TodoConstants.GRID_UPDATE:
+            text = action.text.trim();
+            if (text !== '') {
+                refresh();
+                DataStore.emitChange();
+            }
+            break;
 
-		case TodoConstants.GRID_SCROLL:
-			/*text = action.text.trim();
-			if (text !== '') {
-				create(text);
-				DataStore.emitChange();
-			}*/
-			break;/*
+        case TodoConstants.GRID_SCROLL:
+            /*text = action.text.trim();
+             if (text !== '') {
+             create(text);
+             DataStore.emitChange();
+             }*/
+            break;/*
 
-		case TodoConstants.TODO_TOGGLE_COMPLETE_ALL:
-			if (TodoStore.areAllComplete()) {
-				updateAll({complete: false});
-				updateAll({complete: true});
-	 }
-	 } else {
-	 TodoStore.emitChange();
-			break;
+     case TodoConstants.TODO_TOGGLE_COMPLETE_ALL:
+     if (TodoStore.areAllComplete()) {
+     updateAll({complete: false});
+     updateAll({complete: true});
+     }
+     } else {
+     TodoStore.emitChange();
+     break;
 
-		case TodoConstants.TODO_UNDO_COMPLETE:
-			update(action.id, {complete: false});
-			TodoStore.emitChange();
-			break;
+     case TodoConstants.TODO_UNDO_COMPLETE:
+     update(action.id, {complete: false});
+     TodoStore.emitChange();
+     break;
 
-		case TodoConstants.TODO_COMPLETE:
-			update(action.id, {complete: true});
-			TodoStore.emitChange();
-			break;
+     case TodoConstants.TODO_COMPLETE:
+     update(action.id, {complete: true});
+     TodoStore.emitChange();
+     break;
 
-		case TodoConstants.TODO_UPDATE_TEXT:
-			text = action.text.trim();
-			if (text !== '') {
-				update(action.id, {text: text});
-				TodoStore.emitChange();
-			}
-			break;
+     case TodoConstants.TODO_UPDATE_TEXT:
+     text = action.text.trim();
+     if (text !== '') {
+     update(action.id, {text: text});
+     TodoStore.emitChange();
+     }
+     break;
 
-		case TodoConstants.TODO_DESTROY:
-			destroy(action.id);
-			TodoStore.emitChange();
-			break;
+     case TodoConstants.TODO_DESTROY:
+     destroy(action.id);
+     TodoStore.emitChange();
+     break;
 
-		case TodoConstants.TODO_DESTROY_COMPLETED:
-			destroyCompleted();
-			TodoStore.emitChange();
-			break;*/
+     case TodoConstants.TODO_DESTROY_COMPLETED:
+     destroyCompleted();
+     TodoStore.emitChange();
+     break;*/
 
-		default:
-		// no op
-	}
+        default:
+        // no op
+    }
 });
 
 module.exports = DataStore;
