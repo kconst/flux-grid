@@ -8,15 +8,15 @@ var CHANGE_EVENT = 'change';
 var _columns = [
     {
         label : 'text',
-        sort : null
+        sort : 0
     },
     {
         label : 'value',
-        sort : null
+        sort : 0
     },
     {
         label : 'date',
-        sort : null
+        sort : 0
     }
 ];
 
@@ -195,19 +195,36 @@ function remove(id) {
 }
 
 function sortByColumn(id) {
-    var value = _columns[id].label;
+    var value = _columns[id].label,
+        sortDirection = _columns[id].sort;
 
-    _data = _data.sort(function(a, b){
-        if (a[value] > b[value]) {
-            return -1;
-        }
+    if (!sortDirection) {
+        _data = _data.sort(function(a, b){
+            if (a[value] > b[value]) {
+                return -1;
+            }
 
-        if (a[value] < b[value]) {
-            return 1;
-        }
+            if (a[value] < b[value]) {
+                return 1;
+            }
 
-        return 0;
-    });
+            return 0; 
+        });
+    } else {
+        _data = _data.sort(function(a, b){
+            if (a[value] > b[value]) {
+                return 1;
+            }
+
+            if (a[value] < b[value]) {
+                return -1;
+            }
+
+            return 0;
+        });
+    }
+
+    _columns[id].sort = (_columns[id].sort += 1) % 2;
 }
 
 function update(args) {

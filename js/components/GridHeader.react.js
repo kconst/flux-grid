@@ -33,7 +33,7 @@ var GridHeader = React.createClass({
 
         return (
             <li index={index} onClick={this._onClick}>
-                {column}
+                <a>{column.label}</a>
             </li>
         );
     },
