@@ -1,14 +1,3 @@
-/*
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * TodoStore
- */
-
 var ViewDispatcher = require('../dispatcher/ViewDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var GridConstants = require('../constants/GridConstants');
@@ -17,9 +6,18 @@ var assign = require('object-assign');
 var CHANGE_EVENT = 'change';
 
 var _columns = [
-    'text',
-    'value',
-    'date'
+    {
+        label : 'text',
+        sort : null
+    },
+    {
+        label : 'value',
+        sort : null
+    },
+    {
+        label : 'date',
+        sort : null
+    }
 ];
 
 var _data = [
@@ -88,42 +86,9 @@ var _data = [
 // bootstrap store
 init(_data);
 
-function init(data) {
-    setData(data);
-}
-
-function setData(data) {
-    _data = data;
-}
-
-function refresh() {
-    _data = _data.sort();
-}
-
-function remove(id) {
-    // delete data[id];
-    _data.some(function (e, i, arr) {
-        if (e.id === id) {
-            arr[i] = args;
-
-            return true;
-        }
-    });
-}
-
-function update(args) {
-    _data.some(function (e, i, arr) {
-        if (e.id === args.id) {
-            arr[i] = args;
-
-            return true;
-        }
-    });
-}
-
 var DataStore = assign({}, EventEmitter.prototype, {
 
-    getAll: function () {
+    getData: function () {
         return _data;
     },
 
@@ -153,9 +118,8 @@ var DataStore = assign({}, EventEmitter.prototype, {
 // Register callback to handle all updates
 ViewDispatcher.register(function (action) {
     var text;
-    debugger
     switch (action.actionType) {
-        case TodoConstants.GRID_RENDER:
+        case GridConstants.GRID_RENDER:
             text = action.text.trim();
             if (text !== '') {
                 init(data);
@@ -163,7 +127,7 @@ ViewDispatcher.register(function (action) {
             }
             break;
 
-        case TodoConstants.GRID_DATA_UPDATED:
+        case GridConstants.GRID_DATA_UPDATED:
             text = action.text.trim();
             if (text !== '') {
                 update(action);
@@ -171,7 +135,7 @@ ViewDispatcher.register(function (action) {
             }
             break;
 
-        case TodoConstants.GRID_DATA_REMOVED:
+        case GridConstants.GRID_DATA_REMOVED:
             text = action.text.trim();
             if (text !== '') {
                 remove(action.id);
@@ -179,7 +143,7 @@ ViewDispatcher.register(function (action) {
             }
             break;
 
-        case TodoConstants.GRID_UPDATE:
+        case GridConstants.GRID_UPDATE:
             text = action.text.trim();
             if (text !== '') {
                 refresh();
@@ -187,7 +151,14 @@ ViewDispatcher.register(function (action) {
             }
             break;
 
-        case TodoConstants.GRID_SCROLL:
+        case GridConstants.SORT_COLUMN:
+             if (action.id) {
+                 sortByColumn(action.id);
+                 DataStore.emitChange();
+             }
+            break;
+
+        case GridConstants.GRID_SCROLL:
             /*text = action.text.trim();
              if (text !== '') {
              create(text);
@@ -199,5 +170,54 @@ ViewDispatcher.register(function (action) {
         // no op
     }
 });
+
+function init(data) {
+    setData(data);
+}
+
+function setData(data) {
+    _data = data;
+}
+
+function refresh() {
+    _data = _data.sort();
+}
+
+function remove(id) {
+    // delete data[id];
+    _data.some(function (e, i, arr) {
+        if (e.id === id) {
+            arr[i] = args;
+
+            return true;
+        }
+    });
+}
+
+function sortByColumn(id) {
+    var value = _columns[id].label;
+
+    _data = _data.sort(function(a, b){
+        if (a[value] > b[value]) {
+            return -1;
+        }
+
+        if (a[value] < b[value]) {
+            return 1;
+        }
+
+        return 0;
+    });
+}
+
+function update(args) {
+    _data.some(function (e, i, arr) {
+        if (e.id === args.id) {
+            arr[i] = args;
+
+            return true;
+        }
+    });
+}
 
 module.exports = DataStore;

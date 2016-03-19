@@ -53,7 +53,7 @@ var Viewport = React.createClass({
      * Event handler to mark all TODOs as complete
      */
     _onToggleCompleteAll: function () {
-        GridActions.toggleCompleteAll();
+        // GridActions.toggleCompleteAll();
     }
 
 });

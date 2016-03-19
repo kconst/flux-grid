@@ -10,7 +10,7 @@
  */
 
 var ViewDispatcher = require('../dispatcher/ViewDispatcher');
-var TodoConstants = require('../constants/TodoConstants');
+var GridConstants = require('../constants/GridConstants');
 
 var TodoActions = {
 
@@ -19,7 +19,7 @@ var TodoActions = {
 	 */
 	create: function(text) {
 		ViewDispatcher.dispatch({
-			actionType: TodoConstants.TODO_CREATE,
+			actionType: GridConstants.TODO_CREATE,
 			text: text
 		});
 	},
@@ -28,11 +28,10 @@ var TodoActions = {
 	 * @param  {string} id The ID of the ToDo item
 	 * @param  {string} text
 	 */
-	updateText: function(id, text) {
+	sortByColumn: function(id) {
 		ViewDispatcher.dispatch({
-			actionType: TodoConstants.TODO_UPDATE_TEXT,
-			id: id,
-			text: text
+			actionType: GridConstants.SORT_COLUMN, 
+			id: id
 		});
 	},
 
@@ -43,8 +42,8 @@ var TodoActions = {
 	toggleComplete: function(todo) {
 		var id = todo.id;
 		var actionType = todo.complete ?
-			TodoConstants.TODO_UNDO_COMPLETE :
-			TodoConstants.TODO_COMPLETE;
+			GridConstants.TODO_UNDO_COMPLETE :
+			GridConstants.TODO_COMPLETE;
 
 		ViewDispatcher.dispatch({
 			actionType: actionType,
@@ -57,7 +56,7 @@ var TodoActions = {
 	 */
 	toggleCompleteAll: function() {
 		ViewDispatcher.dispatch({ 
-			actionType: TodoConstants.TODO_TOGGLE_COMPLETE_ALL
+			actionType: GridConstants.TODO_TOGGLE_COMPLETE_ALL
 		});
 	},
 
@@ -66,7 +65,7 @@ var TodoActions = {
 	 */
 	destroy: function(id) {
 		ViewDispatcher.dispatch({
-			actionType: TodoConstants.TODO_DESTROY,
+			actionType: GridConstants.TODO_DESTROY,
 			id: id
 		});
 	},
@@ -76,7 +75,7 @@ var TodoActions = {
 	 */
 	destroyCompleted: function() {
 		ViewDispatcher.dispatch({
-			actionType: TodoConstants.TODO_DESTROY_COMPLETED
+			actionType: GridConstants.TODO_DESTROY_COMPLETED
 		});
 	}
 

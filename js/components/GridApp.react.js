@@ -23,7 +23,7 @@ var DataStore = require('../stores/DataStore');
  */
 function getConfig() {
     return {
-        data: DataStore.getAll(),
+        data: DataStore.getData(),
         columns: DataStore.getColumns()
     };
 }
@@ -60,8 +60,7 @@ var GridApp = React.createClass({
      * Event handler for 'change' events coming from the TodoStore
      */
     _onChange: function () {
-        debugger
-        this.setData(getData());
+        this.setState(getConfig());
     }
 
 });
