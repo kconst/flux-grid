@@ -117,7 +117,7 @@ var DataStore = assign({}, EventEmitter.prototype, {
 });
 
 // Register callback to handle all updates
-AppDispatcher .register(function (action) {
+AppDispatcher.register(function (action) {
     switch (action.actionType) {
         case GridConstants.GRID_DATA_REMOVED:
             remove(action.id);
