@@ -1,4 +1,4 @@
-var ViewDispatcher = require('../dispatcher/ViewDispatcher');
+var AppDispatcher  = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var GridConstants = require('../constants/GridConstants');
 var assign = require('object-assign');
@@ -117,8 +117,7 @@ var DataStore = assign({}, EventEmitter.prototype, {
 });
 
 // Register callback to handle all updates
-ViewDispatcher.register(function (action) {
-    var text;
+AppDispatcher .register(function (action) {
     switch (action.actionType) {
         case GridConstants.GRID_DATA_REMOVED:
             remove(action.id);

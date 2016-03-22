@@ -1,7 +1,7 @@
 var Dispatcher = require('./Dispatcher');
 var assign = require('object-assign');
 
-var ViewDispatcher = assign({}, Dispatcher.prototype, {
+var AppDispatcher  = assign({}, Dispatcher.prototype, {
 
 	/**
 	 * A bridge function between the views and the dispatcher, marking the action
@@ -17,4 +17,4 @@ var ViewDispatcher = assign({}, Dispatcher.prototype, {
 
 });
 
-module.exports = ViewDispatcher;
+module.exports = AppDispatcher ;
