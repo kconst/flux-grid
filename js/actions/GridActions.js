@@ -3,14 +3,14 @@ var GridConstants = require('../constants/GridConstants');
 
 var GridActions = {
 	sortByColumn: function(id) {
-		AppDispatcher .dispatch({
+		AppDispatcher.dispatch({
 			actionType: GridConstants.SORT_COLUMN, 
 			id: id
 		});
 	},
 
 	destroy: function(id) {
-		AppDispatcher .dispatch({
+		AppDispatcher.dispatch({
 			actionType: GridConstants.GRID_DATA_REMOVED,
 			id: id
 		});
