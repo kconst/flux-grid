@@ -40,6 +40,15 @@ body {
         text-align: left;
         width: 20%;
         display: inline-block;
+
+        &.close {
+          width: 3%;
+
+          a {
+            cursor: pointer;
+            color: #6d6d6d;
+          }
+        }
       }
     }
   }
@@ -60,13 +69,14 @@ body {
         cursor: pointer;
         color: dodgerblue;
       }
-    }
 
-    li::first-letter {
-      text-transform: uppercase;
-    }
+      &::first-letter {
+        text-transform: uppercase;
+      }
 
-    li:first-of-type {
+      &:first-of-type {
+        width: 3%;
+      }
     }
   }
 }

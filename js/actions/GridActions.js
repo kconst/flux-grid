@@ -15,7 +15,6 @@ var GridActions = {
 			id: id
 		});
 	}
-
 };
 
 module.exports = GridActions;

@@ -7,13 +7,6 @@ var Viewport = require('./Viewport.react');
 var React = require('react');
 var DataStore = require('../stores/DataStore');
 
-function getConfig() {
-    return {
-        data: DataStore.getData(),
-        columns: DataStore.getColumns()
-    };
-}
-
 var GridApp = React.createClass({
     getInitialState: function () {
         return getConfig();
@@ -44,7 +37,13 @@ var GridApp = React.createClass({
     _onChange: function () {
         this.setState(getConfig());
     }
-
 });
+
+function getConfig() {
+    return {
+        data: DataStore.getData(),
+        columns: DataStore.getColumns()
+    };
+}
 
 module.exports = GridApp;

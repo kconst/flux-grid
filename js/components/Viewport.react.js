@@ -27,6 +27,7 @@ var Viewport = React.createClass({
         return (
             <section id="grid">
                 <ul className="grid-headers">
+                    <li></li>
                     {headers}
                 </ul>
                 <ul className="grid-rows">

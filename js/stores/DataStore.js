@@ -120,14 +120,6 @@ var DataStore = assign({}, EventEmitter.prototype, {
 ViewDispatcher.register(function (action) {
     var text;
     switch (action.actionType) {
-        case GridConstants.GRID_RENDER:
-            text = action.text.trim();
-            if (text !== '') {
-                init(data);
-                DataStore.emitChange();
-            }
-            break;
-
         case GridConstants.GRID_DATA_REMOVED:
             remove(action.id);
             DataStore.emitChange();
@@ -153,13 +145,7 @@ function setData(args) {
 }
 
 function remove(id) {
-    _data.some(function (e, i, arr) {
-        if (e.id === id) {
-            arr.splice(id, 1);
-
-            return true;
-        }
-    });
+    _data.splice(id, 1);
 }
 
 function sortByColumn(id) {
@@ -194,15 +180,5 @@ function sortByColumn(id) {
 
     _columns[id].sort = (_columns[id].sort += 1) % 2;
 }
-/*
-function update(args) {
-    _data.some(function (e, i, arr) {
-        if (e.id === args.id) {
-            arr[i] = args;
-
-            return true;
-        }
-    });
-}*/
 
 module.exports = DataStore;

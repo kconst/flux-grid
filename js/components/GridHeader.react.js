@@ -10,25 +10,20 @@ var GridHeader = React.createClass({
         index: ReactPropTypes.number.isRequired
     },
 
-    getInitialState: function () {
-        return {};
-    },
-
     render: function () {
         var index = this.props.index,
             column = this.props.column;
 
         return (
-            <li index={index} onClick={this._onClick}>
+            <li index={index} onClick={this._sort}>
                 <a>{column.label}</a>
             </li>
         );
     },
 
-    _onClick: function() {
-        GridActions.sortByColumn(this.props.index); 
+    _sort: function() {
+        GridActions.sortByColumn(this.props.index);
     }
-
 });
 
 module.exports = GridHeader;
