@@ -1,8 +1,8 @@
 {
-  "name": "todomvc-flux",
-  "version": "0.0.3",
-  "description": "Example Flux architecture.",
-  "repository": "https://github.com/facebook/flux",
+  "name": "flux-grid",
+  "version": "0.0.5",
+  "description": "Example Flux architecture built for a grid",
+  "repository": "https://github.com/kconst/flux-grid",
   "main": "js/app.js",
   "dependencies": {
     "classnames": "^2.1.3",
